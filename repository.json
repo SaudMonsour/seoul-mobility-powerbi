@@ -1,0 +1,16 @@
+{
+  "name": "seoul-mobility-powerbi",
+  "description": "Power BI mobility analytics covering hourly rentals, operating-hour demand, seasonal patterns, weather context, and source-data quality.",
+  "topics": [
+    "power-bi",
+    "data-cleaning",
+    "data-analysis",
+    "dax",
+    "power-query",
+    "star-schema",
+    "business-intelligence",
+    "uci"
+  ],
+  "visibility": "public",
+  "publication_status": "Published to the matching public GitHub repository"
+}

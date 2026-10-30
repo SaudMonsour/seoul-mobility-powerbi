@@ -1,0 +1,13 @@
+{
+  "checks_passed": [
+    "clean row total",
+    "complete hourly row count",
+    "operating denominator",
+    "zero closed-hour rentals",
+    "visibility unit conversion",
+    "portable Python path configuration",
+    "raw source bytes match archive manifest"
+  ],
+  "count": 7,
+  "desktop_engine_not_tested": true
+}

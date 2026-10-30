@@ -1,0 +1,16 @@
+{
+  "source_rows": 8760,
+  "clean_rows": 8760,
+  "missing_cells_source": 0,
+  "exact_duplicates_source": 0,
+  "total_rentals": 6172314,
+  "recorded_hours": 8760,
+  "operating_hours": 8465,
+  "non_operating_hours": 295,
+  "rentals_per_operating_hour": 729.1569994093326,
+  "peak_single_hour_rentals": 3556,
+  "start": "2017-12-01",
+  "end": "2018-11-30",
+  "cleaning_policy": "Keep all 8,760 hourly records. Parse day-first dates; standardize unit-bearing headers; explicitly flag non-operating hours; convert visibility from 10-metre units to metres. No fabricated missingness or outlier deletion.",
+  "metric_scope": "Rentals are observed counts, not fleet utilization, unmet demand, or available-bike capacity. Weather associations are descriptive and seasonally confounded."
+}

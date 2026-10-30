@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ac60079093599242b466",
+  "position": {
+    "x": 30,
+    "y": 842,
+    "z": 3,
+    "width": 1265,
+    "height": 24,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "01 Dec 2017 — 30 Nov 2018 · Seoul · 8,760 observed hours",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#607486",
+                      "fontWeight": "normal"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'01 Dec 2017 — 30 Nov 2018 · Seoul · 8,760 observed hours'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

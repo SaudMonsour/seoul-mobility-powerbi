@@ -1,0 +1,25 @@
+Hour,HourLabel,Daypart
+0,00:00,Overnight
+1,01:00,Overnight
+2,02:00,Overnight
+3,03:00,Overnight
+4,04:00,Overnight
+5,05:00,Overnight
+6,06:00,Morning commute
+7,07:00,Morning commute
+8,08:00,Morning commute
+9,09:00,Morning commute
+10,10:00,Midday
+11,11:00,Midday
+12,12:00,Midday
+13,13:00,Midday
+14,14:00,Midday
+15,15:00,Midday
+16,16:00,Evening commute
+17,17:00,Evening commute
+18,18:00,Evening commute
+19,19:00,Evening commute
+20,20:00,Late evening
+21,21:00,Late evening
+22,22:00,Late evening
+23,23:00,Late evening

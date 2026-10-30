@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-30",
+  "python": "3.12.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "source_selected_files": [
+    "SeoulBikeData.csv",
+    "source_manifest.json"
+  ],
+  "hashes": {
+    "data/clean/DimDate.csv": "2aa39397871f2850afc4ab62c7901daae3cc83cc8bb9f7b86ad9f00a77aabf08",
+    "data/clean/DimHour.csv": "9dc8782ceca9895f6b6f36e404f79aaa6fdffcd7b32fc61a1f2d0fd37717d8b3",
+    "data/clean/DimSeason.csv": "c75be8e9f476f7331ccb327a57e931dedb99b94bc5bbba122508dcf3604d28c6",
+    "data/clean/FactDemand.csv": "ec74a733659da503e05f54ecbdd8ada0bb57ca2a51e9715d66707677cce9e5e5",
+    "data/raw/SeoulBikeData.csv": "373339b71a8935d69e9af0abf26a70744632119862eeb3919efb389a7b749c60",
+    "data/raw/source_manifest.json": "645db53363e4c63fa3ebb1f45fdd514db7d51564f18bab53ddc9fdcae4c23548"
+  },
+  "native_desktop_status": "Not executed",
+  "publication_status": "Prepared for matching public GitHub repository"
+}

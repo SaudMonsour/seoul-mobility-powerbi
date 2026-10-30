@@ -1,0 +1,15 @@
+{
+  "schema_documents_validated": 56,
+  "visuals": 48,
+  "page_count": 3,
+  "relationships_checked": 3,
+  "foreign_key_orphans": 0,
+  "dimension_duplicate_keys": 0,
+  "fact_rows": 8760,
+  "code_data_columns_match": true,
+  "visual_fields_resolve": true,
+  "canvas_bounds_pass": true,
+  "desktop_refresh_and_render": "NOT EXECUTED",
+  "dax_and_m_engine_execution": "NOT EXECUTED",
+  "schema_validation_scope": "Types, required/extra properties, references, array items, string bounds/patterns, const/enum, anyOf/oneOf, URI format. Does not validate empty-schema visual formatting values against undocumented visual capabilities."
+}

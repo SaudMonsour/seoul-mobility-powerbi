@@ -1,0 +1,8 @@
+measure,value
+source_rows,8760.0
+clean_rows,8760.0
+missing_cells_source,0.0
+exact_duplicates_source,0.0
+operating_hours,8465.0
+non_operating_hours,295.0
+rentals_per_operating_hour,729.1569994093326

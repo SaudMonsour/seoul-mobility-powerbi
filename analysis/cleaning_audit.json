@@ -1,0 +1,256 @@
+{
+  "before": [
+    {
+      "column": "Date",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 365
+    },
+    {
+      "column": "Rented Bike Count",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 2166
+    },
+    {
+      "column": "Hour",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 24
+    },
+    {
+      "column": "Temperature(\u00b0C)",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 546
+    },
+    {
+      "column": "Humidity(%)",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 90
+    },
+    {
+      "column": "Wind speed (m/s)",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 65
+    },
+    {
+      "column": "Visibility (10m)",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 1789
+    },
+    {
+      "column": "Dew point temperature(\u00b0C)",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 556
+    },
+    {
+      "column": "Solar Radiation (MJ/m2)",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 345
+    },
+    {
+      "column": "Rainfall(mm)",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 61
+    },
+    {
+      "column": "Snowfall (cm)",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 51
+    },
+    {
+      "column": "Seasons",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 4
+    },
+    {
+      "column": "Holiday",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 2
+    },
+    {
+      "column": "Functioning Day",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 2
+    }
+  ],
+  "after": [
+    {
+      "column": "Date",
+      "dtype": "datetime64[ns]",
+      "missing": 0,
+      "distinct": 365
+    },
+    {
+      "column": "Rentals",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 2166
+    },
+    {
+      "column": "Hour",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 24
+    },
+    {
+      "column": "TemperatureC",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 546
+    },
+    {
+      "column": "HumidityPct",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 90
+    },
+    {
+      "column": "WindSpeedMps",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 65
+    },
+    {
+      "column": "VisibilityUnits10m",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 1789
+    },
+    {
+      "column": "DewPointC",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 556
+    },
+    {
+      "column": "SolarRadiationMJm2",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 345
+    },
+    {
+      "column": "RainfallMm",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 61
+    },
+    {
+      "column": "SnowfallCm",
+      "dtype": "float64",
+      "missing": 0,
+      "distinct": 51
+    },
+    {
+      "column": "Season",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 4
+    },
+    {
+      "column": "Holiday",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 2
+    },
+    {
+      "column": "FunctioningDay",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 2
+    },
+    {
+      "column": "DateKey",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 365
+    },
+    {
+      "column": "Timestamp",
+      "dtype": "datetime64[ns]",
+      "missing": 0,
+      "distinct": 8760
+    },
+    {
+      "column": "SourceRow",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 8760
+    },
+    {
+      "column": "OperatingFlag",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 2
+    },
+    {
+      "column": "HolidayFlag",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 2
+    },
+    {
+      "column": "VisibilityMetres",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 1789
+    },
+    {
+      "column": "RainBand",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 2
+    },
+    {
+      "column": "TemperatureBand",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 5
+    },
+    {
+      "column": "Daypart",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 5
+    },
+    {
+      "column": "TemperatureBandOrder",
+      "dtype": "int64",
+      "missing": 0,
+      "distinct": 5
+    },
+    {
+      "column": "YearMonth",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 12
+    },
+    {
+      "column": "Weekday",
+      "dtype": "object",
+      "missing": 0,
+      "distinct": 7
+    },
+    {
+      "column": "WeekdayNumber",
+      "dtype": "int32",
+      "missing": 0,
+      "distinct": 7
+    }
+  ],
+  "rows_removed": 0,
+  "date_format": "%d/%m/%Y",
+  "visibility_conversion": "source units \u00d7 10 = metres",
+  "non_operating_rows_retained": 295
+}

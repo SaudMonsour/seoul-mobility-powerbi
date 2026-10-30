@@ -1,0 +1,116 @@
+{
+  "project": "seoul-mobility-powerbi",
+  "pages": [
+    {
+      "name": "Demand overview",
+      "id": "5e170e3bfcb31450e228",
+      "visuals": 16,
+      "kpis": [
+        "Total Rentals",
+        "Rentals per Operating Hour",
+        "Peak Single Hour",
+        "Operating Coverage"
+      ],
+      "charts": [
+        {
+          "type": "lineChart",
+          "title": "Monthly rentals"
+        },
+        {
+          "type": "clusteredBarChart",
+          "title": "Seasonal average operating-hour demand"
+        },
+        {
+          "type": "lineChart",
+          "title": "Demand across the 24-hour cycle"
+        },
+        {
+          "type": "tableEx",
+          "title": "Monthly operating context"
+        }
+      ]
+    },
+    {
+      "name": "Hourly demand patterns",
+      "id": "826744e0e26c930109b2",
+      "visuals": 16,
+      "kpis": [
+        "Total Rentals",
+        "Operating Hours",
+        "Non-operating Hours",
+        "Rentals per Operating Hour"
+      ],
+      "charts": [
+        {
+          "type": "clusteredColumnChart",
+          "title": "Day-of-week demand"
+        },
+        {
+          "type": "clusteredBarChart",
+          "title": "Demand by daypart"
+        },
+        {
+          "type": "lineChart",
+          "title": "Rentals by hour"
+        },
+        {
+          "type": "tableEx",
+          "title": "Hourly operational profile"
+        }
+      ]
+    },
+    {
+      "name": "Weather & data quality",
+      "id": "33a0c7a7ef83a5d14497",
+      "visuals": 16,
+      "kpis": [
+        "Average Temperature C",
+        "Rainy Operating Share",
+        "Non-operating Hours",
+        "Recorded Hours"
+      ],
+      "charts": [
+        {
+          "type": "clusteredColumnChart",
+          "title": "Demand by temperature band"
+        },
+        {
+          "type": "clusteredBarChart",
+          "title": "Rain context and demand"
+        },
+        {
+          "type": "lineChart",
+          "title": "Non-operating hours by month"
+        },
+        {
+          "type": "tableEx",
+          "title": "Seasonal operating coverage"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    [
+      "FactDemand",
+      "DateKey",
+      "DimDate",
+      "DateKey"
+    ],
+    [
+      "FactDemand",
+      "Hour",
+      "DimHour",
+      "Hour"
+    ],
+    [
+      "FactDemand",
+      "Season",
+      "DimSeason",
+      "Season"
+    ]
+  ],
+  "measures": 11,
+  "native_visuals_only": true,
+  "source_format": "PBIP + PBIR + TMSL",
+  "desktop_validation": "Not executed; Power BI Desktop unavailable in this environment"
+}

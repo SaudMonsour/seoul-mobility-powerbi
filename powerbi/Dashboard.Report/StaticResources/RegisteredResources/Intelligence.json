@@ -1,0 +1,32 @@
+{
+  "name": "Seoul Mobility Command",
+  "dataColors": [
+    "#137F6B",
+    "#D79846",
+    "#2D5073",
+    "#71AAAE",
+    "#9C78AE",
+    "#C76876",
+    "#8EA7B5",
+    "#D5DDD9"
+  ],
+  "background": "#F3F6F8",
+  "foreground": "#20364A",
+  "tableAccent": "#137F6B",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI",
+      "color": "#20364A"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 11,
+      "color": "#536879"
+    },
+    "callout": {
+      "fontFace": "Segoe UI",
+      "fontSize": 30,
+      "color": "#20364A"
+    }
+  }
+}

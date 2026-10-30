@@ -1,0 +1,504 @@
+{
+  "name": "Dashboard",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-GB",
+    "sourceQueryCulture": "en-GB",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "expressions": [
+      {
+        "name": "DataRoot",
+        "kind": "m",
+        "expression": "\"C:\\PowerBI\\seoul-mobility-powerbi\\data\\clean\\\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "description": "Absolute path to this repository data/clean folder, including trailing slash. Set before refresh."
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimDate",
+        "lineageTag": "9c074e3f-551f-57b0-b6bf-fa48492a6cae",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date",
+            "summarizeBy": "none",
+            "lineageTag": "ec1b8cbb-e3f7-5e07-9431-b3f4feaa4636",
+            "formatString": "dd MMM yyyy"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "summarizeBy": "none",
+            "lineageTag": "9b9709e1-7c78-5ed3-810f-57190b2f48cb",
+            "isHidden": true,
+            "isKey": true
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "summarizeBy": "none",
+            "lineageTag": "5c97500a-7e82-556d-90f3-127bf5f01851"
+          },
+          {
+            "name": "MonthNumber",
+            "dataType": "int64",
+            "sourceColumn": "MonthNumber",
+            "summarizeBy": "none",
+            "lineageTag": "bc301375-d7c6-5387-912f-58f506b8054c"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "summarizeBy": "none",
+            "lineageTag": "2cce6ad9-432e-511a-9e0e-c01425f54db8",
+            "sortByColumn": "MonthNumber"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "sourceColumn": "YearMonth",
+            "summarizeBy": "none",
+            "lineageTag": "c170d5e5-9077-58d6-85d8-cacc980cb2b7",
+            "sortByColumn": "YearMonthSort"
+          },
+          {
+            "name": "YearMonthSort",
+            "dataType": "int64",
+            "sourceColumn": "YearMonthSort",
+            "summarizeBy": "none",
+            "lineageTag": "18e442f2-ff39-5608-aaef-e9e3084ccbc5",
+            "isHidden": true
+          },
+          {
+            "name": "Weekday",
+            "dataType": "string",
+            "sourceColumn": "Weekday",
+            "summarizeBy": "none",
+            "lineageTag": "1f8874e2-b9f8-5a83-9056-41405e23c137",
+            "sortByColumn": "WeekdayNumber"
+          },
+          {
+            "name": "WeekdayNumber",
+            "dataType": "int64",
+            "sourceColumn": "WeekdayNumber",
+            "summarizeBy": "none",
+            "lineageTag": "f3807ea7-ba01-5b86-8080-5fe5dafe02cf"
+          },
+          {
+            "name": "IsWeekend",
+            "dataType": "int64",
+            "sourceColumn": "IsWeekend",
+            "summarizeBy": "none",
+            "lineageTag": "d255fbf8-6b67-56aa-a887-245f31333f66"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataRoot & \"DimDate.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    EmptyToNull = Table.ReplaceValue(Headers, \"\", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),",
+                "    Typed = Table.TransformColumnTypes(EmptyToNull, {{\"Date\", type date}, {\"DateKey\", Int64.Type}, {\"Year\", Int64.Type}, {\"MonthNumber\", Int64.Type}, {\"MonthName\", type text}, {\"YearMonth\", type text}, {\"YearMonthSort\", Int64.Type}, {\"Weekday\", type text}, {\"WeekdayNumber\", Int64.Type}, {\"IsWeekend\", Int64.Type}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimHour",
+        "lineageTag": "2fc35591-aa94-567b-ae89-bc754c8398cd",
+        "columns": [
+          {
+            "name": "Hour",
+            "dataType": "int64",
+            "sourceColumn": "Hour",
+            "summarizeBy": "none",
+            "lineageTag": "3b0057af-6a87-520a-83be-78940a24dbb4",
+            "isKey": true
+          },
+          {
+            "name": "HourLabel",
+            "dataType": "string",
+            "sourceColumn": "HourLabel",
+            "summarizeBy": "none",
+            "lineageTag": "aea73262-cf4b-525f-b0df-dac1bc53a3ca",
+            "sortByColumn": "Hour"
+          },
+          {
+            "name": "Daypart",
+            "dataType": "string",
+            "sourceColumn": "Daypart",
+            "summarizeBy": "none",
+            "lineageTag": "58b54964-e3e5-5b81-b10c-9657926720e6"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimHour",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataRoot & \"DimHour.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    EmptyToNull = Table.ReplaceValue(Headers, \"\", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),",
+                "    Typed = Table.TransformColumnTypes(EmptyToNull, {{\"Hour\", Int64.Type}, {\"HourLabel\", type text}, {\"Daypart\", type text}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimSeason",
+        "lineageTag": "787a3954-3775-561e-a698-a5770e2685de",
+        "columns": [
+          {
+            "name": "Season",
+            "dataType": "string",
+            "sourceColumn": "Season",
+            "summarizeBy": "none",
+            "lineageTag": "09a4be79-6fd0-5c45-932d-30a18df2f5df",
+            "isKey": true,
+            "sortByColumn": "SeasonOrder"
+          },
+          {
+            "name": "SeasonOrder",
+            "dataType": "int64",
+            "sourceColumn": "SeasonOrder",
+            "summarizeBy": "none",
+            "lineageTag": "a747cf6e-9f7c-539b-ad6f-7f9d4a717ec1",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimSeason",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataRoot & \"DimSeason.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    EmptyToNull = Table.ReplaceValue(Headers, \"\", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),",
+                "    Typed = Table.TransformColumnTypes(EmptyToNull, {{\"Season\", type text}, {\"SeasonOrder\", Int64.Type}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactDemand",
+        "lineageTag": "44d3a015-0498-525f-8e59-999977c4b8a4",
+        "columns": [
+          {
+            "name": "Rentals",
+            "dataType": "int64",
+            "sourceColumn": "Rentals",
+            "summarizeBy": "none",
+            "lineageTag": "e0a98165-855d-523c-a073-240a37401a68"
+          },
+          {
+            "name": "Hour",
+            "dataType": "int64",
+            "sourceColumn": "Hour",
+            "summarizeBy": "none",
+            "lineageTag": "158f850b-ff96-5a27-9839-27f4a9089c38"
+          },
+          {
+            "name": "TemperatureC",
+            "dataType": "double",
+            "sourceColumn": "TemperatureC",
+            "summarizeBy": "none",
+            "lineageTag": "face2a01-1120-5c94-83aa-6d69b53430ca"
+          },
+          {
+            "name": "HumidityPct",
+            "dataType": "int64",
+            "sourceColumn": "HumidityPct",
+            "summarizeBy": "none",
+            "lineageTag": "28e0ccfa-c874-53c4-b4ec-25aa7c36b6a2"
+          },
+          {
+            "name": "WindSpeedMps",
+            "dataType": "double",
+            "sourceColumn": "WindSpeedMps",
+            "summarizeBy": "none",
+            "lineageTag": "d5f57e8f-49c0-532c-9ad8-c295bb5044ac"
+          },
+          {
+            "name": "DewPointC",
+            "dataType": "double",
+            "sourceColumn": "DewPointC",
+            "summarizeBy": "none",
+            "lineageTag": "f6778b3f-9fe2-560c-99ac-b2cbf702afe7"
+          },
+          {
+            "name": "SolarRadiationMJm2",
+            "dataType": "double",
+            "sourceColumn": "SolarRadiationMJm2",
+            "summarizeBy": "none",
+            "lineageTag": "ee07d55e-c294-5163-ac84-c6a02e1440ef"
+          },
+          {
+            "name": "RainfallMm",
+            "dataType": "double",
+            "sourceColumn": "RainfallMm",
+            "summarizeBy": "none",
+            "lineageTag": "eaeb7106-4311-5b27-8bf2-489bc43d6ec7"
+          },
+          {
+            "name": "SnowfallCm",
+            "dataType": "double",
+            "sourceColumn": "SnowfallCm",
+            "summarizeBy": "none",
+            "lineageTag": "4bc8af52-0bda-50a0-9121-505169f0acdd"
+          },
+          {
+            "name": "Season",
+            "dataType": "string",
+            "sourceColumn": "Season",
+            "summarizeBy": "none",
+            "lineageTag": "c61a4be4-09b8-5eee-a3fc-0249ebca7203"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "summarizeBy": "none",
+            "lineageTag": "b4d153f5-b03e-5935-bd42-a83f90ec0f23",
+            "isHidden": true
+          },
+          {
+            "name": "SourceRow",
+            "dataType": "int64",
+            "sourceColumn": "SourceRow",
+            "summarizeBy": "none",
+            "lineageTag": "808a95cd-09b9-54ac-a4d9-15e9556f0e53",
+            "isHidden": true
+          },
+          {
+            "name": "OperatingFlag",
+            "dataType": "int64",
+            "sourceColumn": "OperatingFlag",
+            "summarizeBy": "none",
+            "lineageTag": "34abfbe8-036e-502e-8077-dfe1a0e1493f"
+          },
+          {
+            "name": "HolidayFlag",
+            "dataType": "int64",
+            "sourceColumn": "HolidayFlag",
+            "summarizeBy": "none",
+            "lineageTag": "63683932-0eb3-54eb-a30c-77375ea7a71b"
+          },
+          {
+            "name": "VisibilityMetres",
+            "dataType": "int64",
+            "sourceColumn": "VisibilityMetres",
+            "summarizeBy": "none",
+            "lineageTag": "5f6c87d0-23e3-5555-a267-3539e4456812"
+          },
+          {
+            "name": "RainBand",
+            "dataType": "string",
+            "sourceColumn": "RainBand",
+            "summarizeBy": "none",
+            "lineageTag": "76201280-bec0-58a2-9ec5-a99dc452ffa7"
+          },
+          {
+            "name": "TemperatureBand",
+            "dataType": "string",
+            "sourceColumn": "TemperatureBand",
+            "summarizeBy": "none",
+            "lineageTag": "f565c8fa-2c75-5089-8780-3ff2052ee63c",
+            "sortByColumn": "TemperatureBandOrder"
+          },
+          {
+            "name": "Daypart",
+            "dataType": "string",
+            "sourceColumn": "Daypart",
+            "summarizeBy": "none",
+            "lineageTag": "25cc6568-2ead-5914-9611-4d51eb0b39f0"
+          },
+          {
+            "name": "TemperatureBandOrder",
+            "dataType": "int64",
+            "sourceColumn": "TemperatureBandOrder",
+            "summarizeBy": "none",
+            "lineageTag": "9b5a3ff3-e7e4-5ac0-a540-52a5cf2fa3c0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactDemand",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataRoot & \"FactDemand.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    EmptyToNull = Table.ReplaceValue(Headers, \"\", null, Replacer.ReplaceValue, Table.ColumnNames(Headers)),",
+                "    Typed = Table.TransformColumnTypes(EmptyToNull, {{\"Rentals\", Int64.Type}, {\"Hour\", Int64.Type}, {\"TemperatureC\", type number}, {\"HumidityPct\", Int64.Type}, {\"WindSpeedMps\", type number}, {\"DewPointC\", type number}, {\"SolarRadiationMJm2\", type number}, {\"RainfallMm\", type number}, {\"SnowfallCm\", type number}, {\"Season\", type text}, {\"DateKey\", Int64.Type}, {\"SourceRow\", Int64.Type}, {\"OperatingFlag\", Int64.Type}, {\"HolidayFlag\", Int64.Type}, {\"VisibilityMetres\", Int64.Type}, {\"RainBand\", type text}, {\"TemperatureBand\", type text}, {\"Daypart\", type text}, {\"TemperatureBandOrder\", Int64.Type}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Rentals",
+            "expression": "SUM(FactDemand[Rentals])",
+            "formatString": "#,0",
+            "displayFolder": "Performance",
+            "description": "Total Rentals. Format: #,0. Definition: SUM(FactDemand[Rentals]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "d8e11532-c69b-5601-acd9-55f7afb17af9"
+          },
+          {
+            "name": "Recorded Hours",
+            "expression": "COUNTROWS(FactDemand)",
+            "formatString": "#,0",
+            "displayFolder": "Quality and coverage",
+            "description": "Recorded Hours. Format: #,0. Definition: COUNTROWS(FactDemand). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "7e0db8ee-ba1a-5389-83ce-6b5962d5d215"
+          },
+          {
+            "name": "Operating Hours",
+            "expression": "SUM(FactDemand[OperatingFlag])",
+            "formatString": "#,0",
+            "displayFolder": "Performance",
+            "description": "Operating Hours. Format: #,0. Definition: SUM(FactDemand[OperatingFlag]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "399f0491-3be8-59b5-817d-3125672152ac"
+          },
+          {
+            "name": "Non-operating Hours",
+            "expression": "[Recorded Hours] - [Operating Hours]",
+            "formatString": "#,0",
+            "displayFolder": "Quality and coverage",
+            "description": "Non-operating Hours. Format: #,0. Definition: [Recorded Hours] - [Operating Hours]. See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "ef12b7d6-48d0-56f6-87a7-618fb302b696"
+          },
+          {
+            "name": "Rentals per Operating Hour",
+            "expression": "DIVIDE([Total Rentals], [Operating Hours])",
+            "formatString": "#,0.0",
+            "displayFolder": "Performance",
+            "description": "Rentals per Operating Hour. Format: #,0.0. Definition: DIVIDE([Total Rentals], [Operating Hours]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "d1f9f442-c87d-5ae4-b952-59cd22c043d6"
+          },
+          {
+            "name": "Peak Single Hour",
+            "expression": "MAX(FactDemand[Rentals])",
+            "formatString": "#,0",
+            "displayFolder": "Performance",
+            "description": "Peak Single Hour. Format: #,0. Definition: MAX(FactDemand[Rentals]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "92aaa7e1-2b2c-56d1-bf12-6df6ab86349f"
+          },
+          {
+            "name": "Average Temperature C",
+            "expression": "AVERAGE(FactDemand[TemperatureC])",
+            "formatString": "0.0\"°C\"",
+            "displayFolder": "Performance",
+            "description": "Average Temperature C. Format: 0.0\"°C\". Definition: AVERAGE(FactDemand[TemperatureC]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "872c4ad7-a3fc-5bc7-9d51-22e86ddd91e5"
+          },
+          {
+            "name": "Rainy Operating Hours",
+            "expression": "CALCULATE([Operating Hours], FactDemand[RainfallMm] > 0)",
+            "formatString": "#,0",
+            "displayFolder": "Performance",
+            "description": "Rainy Operating Hours. Format: #,0. Definition: CALCULATE([Operating Hours], FactDemand[RainfallMm] > 0). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "cb05703d-6bba-5f4e-a191-894e5f66309a"
+          },
+          {
+            "name": "Rainy Operating Share",
+            "expression": "DIVIDE([Rainy Operating Hours], [Operating Hours])",
+            "formatString": "0.0%",
+            "displayFolder": "Performance",
+            "description": "Rainy Operating Share. Format: 0.0%. Definition: DIVIDE([Rainy Operating Hours], [Operating Hours]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "b62471bb-34b6-56f4-8398-fa323ceff60a"
+          },
+          {
+            "name": "Operating Coverage",
+            "expression": "DIVIDE([Operating Hours], [Recorded Hours])",
+            "formatString": "0.0%",
+            "displayFolder": "Quality and coverage",
+            "description": "Operating Coverage. Format: 0.0%. Definition: DIVIDE([Operating Hours], [Recorded Hours]). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "16681385-ebb8-5c2f-8c0a-141e9fbb2dc7"
+          },
+          {
+            "name": "Holiday Rentals",
+            "expression": "CALCULATE([Total Rentals], FactDemand[HolidayFlag] = 1)",
+            "formatString": "#,0",
+            "displayFolder": "Performance",
+            "description": "Holiday Rentals. Format: #,0. Definition: CALCULATE([Total Rentals], FactDemand[HolidayFlag] = 1). See docs/METRIC_CONTRACT.md for denominator and interpretation limits.",
+            "lineageTag": "b4182998-f3b7-5381-8470-cb8407c7ed53"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "c4c0de2a-0730-5fa1-9a37-3d854a06aa6b",
+        "fromTable": "FactDemand",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "7ae9b78f-2695-5008-8d08-5c9ea1780436",
+        "fromTable": "FactDemand",
+        "fromColumn": "Hour",
+        "toTable": "DimHour",
+        "toColumn": "Hour",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "a2e985f9-9987-5fc4-9a78-ab97a8951ceb",
+        "fromTable": "FactDemand",
+        "fromColumn": "Season",
+        "toTable": "DimSeason",
+        "toColumn": "Season",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ]
+  }
+}
