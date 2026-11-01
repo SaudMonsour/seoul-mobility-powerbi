@@ -66,4 +66,3 @@ Rates use explicit denominators; no targets, profit figures, forecasts or causal
 
 Dataset attribution and source links: [DATA_LICENSE.md](DATA_LICENSE.md). Code: MIT. Dataset: CC BY 4.0. This is a historical analytical portfolio project, not a live operational feed.
 
-Prepared for Saud Alotaibi with automated implementation assistance. Source data, assumptions and verification limits are preserved for review.
